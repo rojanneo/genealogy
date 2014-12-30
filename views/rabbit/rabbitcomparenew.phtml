@@ -1,0 +1,68 @@
+<?php $date=date("Y-m-d");
+echo date("Y-m-d",strtotime($date." -14 day")); ?>
+<h1 align="left">Mating List for Today </h1>
+<table style="width:100%">
+ <tr>
+    <td>ID</td>
+    <td>Family ID</td>		
+    <td>Buck Id</td>
+    <td>Doe Id</td>
+    <td>Mating Time</td>
+  </tr>
+<?php $i=1; foreach ($view_matinglist as $view_matinglist) {?>
+   <tr>
+   	<td><?php echo $i; ?></td>
+    <td><?php echo $view_matinglist['fid']; ?></td>
+    <td><?php echo $view_matinglist['buckid']; ?></td>		
+    <td><?php echo $view_matinglist['doesid']; ?></td>
+    <td></td>
+  </tr>
+<?php $i++; } ?>
+</table>
+<?php if(isset($view_result)) { echo $view_result; ?>
+
+<?php }  else {?>
+<h1>hello </h1>
+<div class="rabbit-check-form">
+			<form method = "post" action = "<?php echo URL.'rabbit/twoRabbitMattingCheck'; ?>">
+				<div class="half">
+					
+				<fieldset>
+				<label for ="name">rabbit x</label>
+				<input type="text" class="input-box required number-validation" name="rabbit_x"/>
+				</fieldset>
+                                </br>
+				<fieldset>
+				<label for ="name">rabbit y</label>
+				<input type="text" class="input-box required number-validation" name="rabbit_y"/>
+				</fieldset>
+				
+					
+				</div>
+				<div class="half">									
+					<fieldset>
+					<label></label>
+					<input type="submit" value="Submit" class="btn btn-blue" />
+					</fieldset>
+				</div>				
+
+			</form>
+    
+    
+    
+		</div>
+
+
+
+	<script>
+	$('.rabbit-check-form form').submit(function(){
+		return $(this).validate('input-box');
+	});
+	$('.rabbit-check-form form').submit(function(){
+		return $(this).validate('input-box');
+	});
+
+
+		
+	</script>
+<?php } ?>

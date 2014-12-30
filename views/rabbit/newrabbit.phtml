@@ -1,0 +1,98 @@
+	<?php if(isset($view_succesfull)){ echo'Rabbit Is Successfully Added';}?> 
+	<div class="wrapper signup clearfix">
+	 <a href="javascript:void(0)" class="add-rabbit" onclick="commentlink1(this)">Add Rabbit</a>
+	<div class="register-retailer-form"> 
+			<form method = "post" action = "<?php echo URL.'rabbit/insertrabbit'?>">
+				<div class="half">
+					<fieldset>
+					<label for ="name">Rabbit Slug</label>
+					<input type="text" class="input-box required text-validation" name="rslug"/>
+					</fieldset>
+					<fieldset>
+					<label for ="name">Type</label>
+					<select name="rtype" class="input-box" style="width:64%;height: 46px;border: none;border-radius: 10px;">
+							<option value="B">BUCK</option>
+							<option value="D">DOE</option>							
+					</select>
+					</fieldset>
+					<fieldset>
+					<label for ="name">Family ID</label>
+					<select name="f_ID" class="input-box" style="width:64%;height: 46px;border: none;border-radius: 10px;">
+							<?php if(isset($view_family_id)) { 
+							foreach($view_family_id as $view_family_id_value): ?>
+							<option value="<?php echo $view_family_id_value['f_id']; ?>"><?php echo $view_family_id_value['f_id']; ?></option>
+							<?php endforeach; } ?>					
+					</select>
+					</fieldset>
+					<fieldset>
+					<label for ="name">Litter ID</label>
+					<select name="l_Id" class="input-box" style="width:64%;height: 46px;border: none;border-radius: 10px;">
+							<?php if(isset($view_litter_id)) { 
+							foreach($view_litter_id as $view_litter_id): ?>
+							<option value="<?php echo $view_litter_id['l_id']; ?>"><?php echo $view_litter_id['l_id']; ?></option>
+							<?php endforeach; } ?>					
+					</select>					
+					</fieldset>					
+					</div>
+				<div class="half">
+					<fieldset>
+					<label for ="name">Parent Doe ID</label>
+					<select name="p_doe_Id" class="input-box" style="width:64%;height: 46px;border: none;border-radius: 10px;">
+							<?php if(isset($view_does_id)) { 
+							foreach($view_does_id as $view_does_id): ?>
+							<option value="<?php echo $view_litter_id['l_id']; ?>"><?php echo $view_does_id['r_id']; ?></option>
+							<?php endforeach; } ?>					
+					</select>
+					</fieldset>
+					<fieldset>
+					<label for ="name">Parent Buck ID</label>
+					<select name="p_buck_Id" class="input-box" style="width:64%;height: 46px;border: none;border-radius: 10px;">
+							<?php if(isset($view_buck_id)) { 
+							foreach($view_buck_id as $view_buck_id): ?>
+							<option value="<?php echo $view_litter_id['l_id']; ?>"><?php echo $view_buck_id['r_id']; ?></option>
+							<?php endforeach; } ?>					
+					</select>
+					</fieldset>
+					<fieldset>
+					<label for ="name">Last Given Birth Date</label>
+					<input type="date" name="b_date"/>
+					</fieldset>
+					<fieldset>
+					<label for ="name">Status</label>
+					<select name="rstatus" class="input-box" style="width:64%;height: 46px;border: none;border-radius: 10px;">
+							<option value="1">Active</option>
+							<option value="0">Inactive</option>
+					</select>
+					</fieldset>	
+										
+					<fieldset>
+					<label></label>
+					<input type="submit" value="Submit" class="btn btn-blue" />
+					</fieldset>
+				</div>	
+				
+
+			</form>
+	</div>
+	</div>
+	
+
+<script>
+	$('.register-retailer-form form').submit(function(){
+		return $(this).validate('input-box');
+	});
+</script>
+<script type="text/javascript">
+$( ".register-retailer-form" ).hide();
+	$('.add-rabbit').on("click",function(){
+		
+		 if($(this).find('div.register-retailer-form').is(":visible"))
+		 {
+		 	$(this).parent().find('div.register-retailer-form').hide();
+		 }
+		 $(this).parent().find('div.register-retailer-form').toggle(); $(window).resize();
+
+		 	
+		
+	});
+</script>
